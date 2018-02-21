@@ -1,0 +1,323 @@
+-------------------------------------------------------------------------------------------------------------------------
+			ALL ROUTES MUST BE PREFIXED WITH /api (i.e) http://54.144.185.184/api/
+-------------------------------------------------------------------------------------------------------------------------
+Route::post('/signup);
+
+	-Requires name(min:3 chars), email(valid email), password( min:6 chars)
+
+	-Returns suceess and profile_id, you will need this to go to the profile.
+
+
+Route::post('/log');
+
+	-Requires email(valid email), password(min:6)
+
+
+Route::post('/out);
+	
+	-Requires api_key to log out. You will get when logged in!
+
+-----------------------------------------------------------------------------------------------------------------------
+	api_key needeed to access these urls
+-----------------------------------------------------------------------------------------------------------------------
+//for core user, only gives email, password, api_key, name and _id
+
+Route::get('/user');
+
+	-Returns core user details like name, email, password(Hashed), api_key. Now pass api_key for every request in the header.
+
+Route::get('/user/{id}');
+	
+	-Returns sane as above
+
+Route::post('/user/{id}');
+
+	-Requires name(min:3), email(valid email)->preferebly dont give option to change email.
+
+Route::DELETE('/user');
+
+	-Deletes the user and Returns Deleted Message.
+
+//end User
+
+
+//for user profile index, update and delete
+
+Route::get('/profile');
+
+	-Returns the authenticated user Profile
+
+
+Route::get('/profile/{id}');
+
+	-Returns sane as above
+
+Route::post('/profile/{id}');
+
+	-Requires first_name, last_name (all min:3 chars)
+
+Route::DELETE('/profile');
+	
+	-Deletes the Profile
+
+//end profile
+
+//basic location Crud
+Route::get('/location');
+	
+	-Returns all Locations Available.
+
+
+Route::post('/location');
+
+	-Requires name (all min:3 chars)
+
+Route::get('/location/{id}');
+
+	-Returns Single Location based on id
+
+Route::post('/location/{id}');
+	
+	-Requires name (all min:3 chars)
+
+Route::DELETE('/location');
+	
+	-Deletes the location
+
+
+//end location Crud
+
+
+//interest categories crud
+Route::get('/interestcategories');
+
+	-Returns all Interest Categories Available.
+
+Route::post('/interestcategories');
+
+	-Requires name (all min:3 chars)
+
+Route::get('/interestcategories/{id}', 'InterestCategoryController@show');
+
+	-Returns Single InterestCategory based on id
+
+Route::post('/interestcategories/{id}');
+
+	-Requires name (all min:3 chars)
+
+Route::DELETE('/interestcategories');
+
+	-Deletes the Interest category
+
+//end interest categories crud
+
+//languages crud
+Route::get('/languages');
+
+	-Returns all Languages Available.
+
+Route::post('/languages');
+
+	-Requires name (all min:3 chars)
+
+Route::get('/languages/{id}';
+
+	-Returns Single Languages based on id
+
+Route::post('/languages/{id}');
+
+	-Requires name (all min:3 chars)
+
+Route::DELETE('/languages');
+
+	-Deletes the location
+
+
+//end languages crud
+
+//interest crud
+Route::get('/interest');
+
+	-Returns all interests Available.
+
+Route::get('/interest/create');
+
+	-Returns all the Interest Categories so You could use it as a drop down to choose a Interest category for interest
+
+Route::post('/interest');
+
+	-Requires name (all min:3 chars)
+
+Route::get('/interest/{id}');
+
+	-Returns Single Interest based on id
+
+Route::post('/interest/{id}');
+
+	-Requires name (all min:3 chars)
+
+Route::DELETE('/interest');
+
+	-Deletes the location
+
+
+//end interest crud
+
+//Events crud
+Route::get('/events');
+
+	-Returns all interests Available.
+
+Route::get('/events/create');
+
+	-Returns all the Location so You could use it as a drop down to choose a location for an event.
+
+Route::post('/events');
+
+	-Requires name ( min:3 chars), description(min:10 chars)
+
+Route::get('/events/{id}');
+
+	-Returns Single Event based on id
+
+Route::post('/events/{id}');
+
+	-Requires name ( min:3 chars), description(min:10 chars)
+
+Route::DELETE('/events');
+	
+	-Deletes the event
+
+
+//end Events crud
+
+
+//posts crud
+
+Route::get('/posts');
+
+	-Returns all posts Available.	
+
+
+Route::post('/posts');
+	
+	--Requires post ( min:3 chars), file( only jpg,jpeg,bmp,png,flv,mp4,3gpp)
+
+Route::get('/posts/{id}');
+
+	-Returns Single Post based on id
+
+Route::post('/posts/{id}');
+
+	
+	--Requires post ( min:3 chars), file( only jpg,jpeg,bmp,png,flv,mp4,3gpp)
+
+Route::DELETE('/posts');
+
+	-Deletes the post
+
+
+//end posts crud
+
+
+Route::get('/posts/{post}/comments');
+	
+	-Returns all comments for post. Note: {post} will be the post Id.	
+
+
+Route::post('/posts/{post}/comment');
+
+	-Requires comment
+
+
+Route::post('/posts/{post}/comment/{id}');
+
+	-Requires comment
+
+
+Route::DELETE('/posts/{post}/comment/{id}');
+
+	-Deletes a comment
+
+
+//status crud
+
+Route::get('/status'');
+
+	-Returns all status fof all users. 
+
+
+Route::post('/status');
+
+	-Requires status
+
+Route::get('/status/{id}');
+
+	-Returns Single status based on id
+
+Route::post('/status/{id}');
+
+	-Requires status
+
+Route::DELETE('/status');
+
+	-Deletes a status
+
+//end status crud
+
+
+Route::get('/myevents');
+
+	-Returns Events that authenticated user created
+
+Route::get('/myposts');
+
+	-Returns posts that authenticated user created
+
+Route::get('/mystatus');
+
+	-Returns status that authenticated user created
+
+	
+------------------------------------------------------------------------------------------------------------------------
+New Routes Dated (20-2-2018)
+------------------------------------------------------------------------------------------------------------------------
+
+Route::get('/myconvos');
+
+	-Returns all conversation of the auth user.
+	-Use that conversation_id to below given /message/{conversationId} route, You will returned with messages with Sender Id
+
+
+
+Route::post('/posts/like/{postId}');
+
+	-Use this to make a Like to a post with Id,
+	-It takes Id from the url(id of the post)
+
+Route::post('/posts/unlike/{postId}');
+
+	-unlikes the post which is liked 
+
+
+
+
+
+Route::post('/message/{sendTo}');
+
+		-Use this to send message to a user, pass the user Id to which user to send,
+		it will return a conversation Id,
+
+
+Route::get('/message/{coversationId}');
+	
+	-Use the above returned conversation Id and use to send messages for a particular conversation.
+
+
+
+
+
+    
+
+
+
