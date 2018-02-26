@@ -174,7 +174,7 @@ Route::get('/events/create');
 
 Route::post('/events');
 
-	-Requires name ( min:3 chars), description(min:10 chars)
+	-Requires name ( min:3 chars), description(min:10 chars), date, file(jpeg,jpg,bmp,png,video/x-flv,video/mp4,video/3gpp), location
 
 Route::get('/events/{id}');
 
@@ -182,7 +182,7 @@ Route::get('/events/{id}');
 
 Route::post('/events/{id}');
 
-	-Requires name ( min:3 chars), description(min:10 chars)
+	-Requires name ( min:3 chars), description(min:10 chars), date, file(jpeg,jpg,bmp,png,video/x-flv,video/mp4,video/3gpp), location
 
 Route::DELETE('/events');
 	

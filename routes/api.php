@@ -157,6 +157,15 @@ Route::DELETE('/posts/{post}/comment/{id}', 'CommentController@delete');
 Route::post('/posts/{id}/attach', 'CommentController@attach');
 
 
+//post like and unlike
+
+Route::post('/posts/like/{postId}', 'PostLikeController@like');
+
+Route::post('/posts/unlike/{postId}', 'PostLikeController@unlike');
+
+//end post like and unlike
+
+
 //status crud
 
 Route::get('/status', 'StatusController@index');
@@ -188,12 +197,7 @@ Route::get('/mymessages', 'MessageController@my_messages');
 
 //end all authenticated user routes
 
-//post like and unlike
 
-Route::post('/posts/like/{postId}', 'PostLikeController@like');
-Route::post('/posts/unlike/{postId}', 'PostLikeController@unlike');
-
-//end post like and unlike
 
 
 
@@ -201,8 +205,16 @@ Route::get('/message', 'MessageController@index');
 
 Route::post('/message/{sendTo}', 'MessageController@store');
 
-
 Route::get('/message/{coversationId}', 'MessageController@show');
+
+
+
+Route::post('/add_friend/{userRequestTo}', 'FriendshipController@add_friend');
+Route::post('/accept_friend/{userRequestTo}', 'FriendshipController@accept_friend');
+Route::get('/myfriends', 'FriendshipController@friends');
+Route::get('/pendingrequests', 'FriendshipController@pending_requests');
+
+
 
 
 

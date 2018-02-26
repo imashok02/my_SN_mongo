@@ -5,12 +5,14 @@ namespace App;
 use App\ParentModel;
 use Hash;
 use MongoDB;
-
+use App\Traits\Friendable;
 // require_once 'DBConnection.php';
 // require_once 'session.php';
 
 
 class User extends ParentModel {
+
+    use Friendable;
 
     const COLLECTION = 'users';
     private $_mongo;
@@ -86,6 +88,13 @@ class User extends ParentModel {
        return $result;
     }
 
+
+    public function findforFriend($id)
+    {
+        $result = $this->collection->find(array('_id' => new MongoDB\BSON\ObjectID($id)));
+
+       return $result;
+    }
 
     
 

@@ -22,15 +22,11 @@ class ParentModel {
 
      public function all() 
     {
-        $result = $this->collection->find();
+          $result = $this->collection->find();
 
-        
-          
           $ok = iterator_to_array( $result);
 
-          return $ok;
-         
-        
+          return $ok;    
     }
 
 
@@ -42,6 +38,44 @@ class ParentModel {
     }
 
 // its working
+
+    public function findOneRequestor($requestor)
+    {
+        $result = $this->collection->findOne(array('requestor' => $requestor));
+
+        return $result;
+    }
+
+    public function findRequestorWithstatus0($requestor)
+    {
+        $result = $this->collection->find(array('userRequestedTo' => $requestor, 'status' => 0));
+
+        $final = iterator_to_array($result);
+
+        return $final;
+    }
+
+     public function findRequestorWithstatus1($requestor)
+    {
+        $result = $this->collection->find(array('requestor' => $requestor, 'status' => 1));
+
+        $final = iterator_to_array($result);
+
+        return $final;
+    }
+
+
+
+    public function findUserRequestFromWithstatus1($requestor)
+    {
+        $result = $this->collection->find(array('userRequestedTo' => $requestor, 'status' => 1));
+
+        $final = iterator_to_array($result);
+
+        return $final;
+    }
+
+
     public function findOneId($id) 
     {
 
@@ -118,6 +152,14 @@ class ParentModel {
 
         return true;
 
+    }
+
+
+    public function is_valid_post($value)
+    {
+        $result = $this->collection->findOne(array('post_id' =>  new MongoDB\BSON\ObjectID($value)));
+
+        return $result;
     }
 
 

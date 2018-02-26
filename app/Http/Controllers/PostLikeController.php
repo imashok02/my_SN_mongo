@@ -18,6 +18,15 @@ class PostLikeController extends Controller
     	$like = new PostLike;
 
 
+        $valid_post = $post->valid_post($postId);
+
+        if(empty($valid_post))
+        {
+            return "Not a valid Post";
+            die();
+        }
+
+
 
     	$value = $like->validate_like($postId, $user->auth_user()->_id);
     	
@@ -46,6 +55,15 @@ class PostLikeController extends Controller
         $post = new Post;
 
         $like = new PostLike;
+
+        $valid_post = $post->valid_post($postId);
+
+        if(empty($valid_post))
+        {
+            return "Not a valid Post";
+            die();
+        }
+        
 
         $value = $like->validate_like($postId, $user->auth_user()->_id);
         

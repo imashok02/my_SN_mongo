@@ -19,7 +19,17 @@ class CommentController extends Controller
     public function index($post)
     {
 
+        
         $comment = new Comment;
+
+        $valid_post = $comment->is_valid_post(new  MongoDB\BSON\ObjectID($post));
+
+        if(empty($valid_post))
+        {
+            return "Not a valid Post";
+            die();
+        }
+
         $find_comment_post = $comment->findPost(new  MongoDB\BSON\ObjectID($post));
 
         return $find_comment_post;
@@ -45,7 +55,7 @@ class CommentController extends Controller
     public function store(Request $request, $post)
     {
         $this->validate($request, [
-            'comment' =>'required',
+            'comment' =>'required'
             
         ]);
 
@@ -71,14 +81,23 @@ class CommentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id, $post)
+    public function show($post,$id)
     {
-        $post = new Post;
 
-        $post = $post->findOneId($post);
+
+
         $comment = new Comment;
+
+         $valid_post = $comment->is_valid_post($post);
+
+        if(empty($valid_post))
+        {
+            return "Not a valid Post";
+            die();
+        }
+
         $ok = $comment->findOneId($id);
-        return [$ok, $post];
+        return $ok;
     }
 
     /**
@@ -102,7 +121,7 @@ class CommentController extends Controller
     public function update(Request $request, $post, $id )
     {
         $this->validate($request, [
-            'comment' =>'required',
+            'comment' =>'required'
             
         ]);
 
@@ -110,7 +129,17 @@ class CommentController extends Controller
         $user = new User;
         $comment = new Comment();
 
-        $find_post = $comment->findOnePost(new  MongoDB\BSON\ObjectID($post));
+
+        $valid_post = $comment->is_valid_post(new MongoDB\BSON\ObjectID($post));
+
+        if(empty($valid_post))
+        {
+            return "Not a valid Post";
+            die();
+        }
+
+    
+        $find_post = $comment->findOnePost(new MongoDB\BSON\ObjectID($post));
 
         $values = [
             
