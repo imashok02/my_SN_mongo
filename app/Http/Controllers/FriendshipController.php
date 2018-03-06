@@ -58,4 +58,5 @@ class FriendshipController extends Controller
         return $pending;
     }
 
+
 }

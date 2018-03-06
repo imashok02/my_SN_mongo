@@ -119,10 +119,10 @@ trait Friendable
 	}
 
 
-	// public function friends_ids()
-	// {
-	// 	return collect($this->friends())->pluck('id')->toArray();
-	// }
+	public function friends_ids()
+	{
+		return $this->friends();
+	}
 
 
 	// public function is_friends_with($user_id)

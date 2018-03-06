@@ -34,7 +34,7 @@ Route::post('/user/{id}');
 
 	-Requires name(min:3), email(valid email)->preferebly dont give option to change email.
 
-Route::DELETE('/user');
+Route::DELETE('/user/delete/{id}');
 
 	-Deletes the user and Returns Deleted Message.
 
@@ -56,7 +56,7 @@ Route::post('/profile/{id}');
 
 	-Requires first_name, last_name (all min:3 chars)
 
-Route::DELETE('/profile');
+Route::DELETE('/profile/delete/{id}');
 	
 	-Deletes the Profile
 
@@ -80,7 +80,7 @@ Route::post('/location/{id}');
 	
 	-Requires name (all min:3 chars)
 
-Route::DELETE('/location');
+Route::DELETE('/location/delete/{id}');
 	
 	-Deletes the location
 
@@ -105,7 +105,7 @@ Route::post('/interestcategories/{id}');
 
 	-Requires name (all min:3 chars)
 
-Route::DELETE('/interestcategories');
+Route::DELETE('/interestcategories/delete/{id}');
 
 	-Deletes the Interest category
 
@@ -128,7 +128,7 @@ Route::post('/languages/{id}');
 
 	-Requires name (all min:3 chars)
 
-Route::DELETE('/languages');
+Route::DELETE('/languages/delete/{id}');
 
 	-Deletes the location
 
@@ -156,7 +156,7 @@ Route::post('/interest/{id}');
 
 	-Requires name (all min:3 chars)
 
-Route::DELETE('/interest');
+Route::DELETE('/interest/delete/{id}');
 
 	-Deletes the location
 
@@ -184,7 +184,7 @@ Route::post('/events/{id}');
 
 	-Requires name ( min:3 chars), description(min:10 chars), date, file(jpeg,jpg,bmp,png,video/x-flv,video/mp4,video/3gpp), location
 
-Route::DELETE('/events');
+Route::DELETE('/events/delete/{id}');
 	
 	-Deletes the event
 
@@ -212,7 +212,7 @@ Route::post('/posts/{id}');
 	
 	--Requires post ( min:3 chars), file( only jpg,jpeg,bmp,png,flv,mp4,3gpp)
 
-Route::DELETE('/posts');
+Route::DELETE('/posts/delete/{id}');
 
 	-Deletes the post
 
@@ -259,7 +259,7 @@ Route::post('/status/{id}');
 
 	-Requires status
 
-Route::DELETE('/status');
+Route::DELETE('/status/delete/{id}');
 
 	-Deletes a status
 
@@ -313,6 +313,40 @@ Route::get('/message/{coversationId}');
 	
 	-Use the above returned conversation Id and use to send messages for a particular conversation.
 
+
+------------------------------------------------------------------------------------------------------------------------
+New Routes Dated (1-3-2018)
+------------------------------------------------------------------------------------------------------------------------
+
+Route::post('/add_friend/{userRequestTo}');
+
+	-Requires an Id to  send a request to a user for a friend.
+
+
+Route::post('/accept_friend/{userRequestTo}');
+
+	-use this to accept the friend requests received.
+
+
+Route::get('/myfriends');
+
+	-Use this to view all the authenticated users friends.
+
+
+Route::get('/pendingrequests');
+
+	-Use this to see the pending requests for the user
+
+
+
+
+
+
+
+Route::post('/profile/{id}/changepic');
+
+	-Use this to update/change a profile pic
+	- Requires images as name (file), accepted formats, jpeg,jpg,bmp,png
 
 
 

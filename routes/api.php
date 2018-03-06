@@ -26,7 +26,7 @@ Route::get('/user/{id}', 'UserController@show');
 
 Route::post('/user/{id}', 'UserController@update');
 
-Route::DELETE('/user', 'UserController@delete');
+Route::DELETE('/user/delete/{id}', 'UserController@destroy');
 
 //end User
 
@@ -41,7 +41,7 @@ Route::get('/profile/{id}', 'ProfileController@show');
 
 Route::post('/profile/{id}', 'ProfileController@update');
 
-Route::DELETE('/profile', 'ProfileController@delete');
+Route::delete('/profile/delete/{id}', 'ProfileController@destroy');
 
 Route::post('/profile/{id}/attach', 'ProfileController@attach');
 
@@ -56,7 +56,7 @@ Route::get('/location/{id}', 'LocationController@show');
 
 Route::post('/location/{id}', 'LocationController@update');
 
-Route::DELETE('/location', 'LocationController@delete');
+Route::DELETE('/location/delete/{id}', 'LocationController@destroy');
 
 
 //end location Crud
@@ -71,7 +71,7 @@ Route::get('/interestcategories/{id}', 'InterestCategoryController@show');
 
 Route::post('/interestcategories/{id}', 'InterestCategoryController@update');
 
-Route::DELETE('/interestcategories', 'InterestCategoryController@delete');
+Route::DELETE('/interestcategories/delete/{id}', 'InterestCategoryController@destroy');
 
 //end interest categories crud
 
@@ -84,7 +84,7 @@ Route::get('/languages/{id}', 'LanguagesController@show');
 
 Route::post('/languages/{id}', 'LanguagesController@update');
 
-Route::DELETE('/languages', 'LanguagesController@delete');
+Route::DELETE('/languages/delete/{id}', 'LanguagesController@destroy');
 
 Route::post('/languages/{id}/attach', 'LanguagesController@attach');
 
@@ -101,7 +101,7 @@ Route::get('/interest/{id}', 'InterestController@show');
 
 Route::post('/interest/{id}', 'InterestController@update');
 
-Route::DELETE('/interest', 'InterestController@delete');
+Route::DELETE('/interest/delete/{id}', 'InterestController@destroy');
 
 Route::post('/interest/{id}/attach', 'InterestController@attach');
 //end interest crud
@@ -117,7 +117,7 @@ Route::get('/events/{id}', 'EventController@show');
 
 Route::post('/events/{id}', 'EventController@update');
 
-Route::DELETE('/events', 'EventController@delete');
+Route::DELETE('/events/delete/{id}', 'EventController@destroy');
 
 Route::post('/events/{id}/attach', 'EventController@attach');
 //end Events crud
@@ -135,7 +135,7 @@ Route::get('/posts/{id}', 'PostController@show');
 
 Route::post('/posts/{id}', 'PostController@update');
 
-Route::DELETE('/posts', 'PostController@delete');
+Route::DELETE('/posts/delete/{id}', 'PostController@destroy');
 
 Route::post('/posts/{id}/attach', 'PostController@attach');
 
@@ -152,7 +152,7 @@ Route::get('/posts/{post}/comment/{id}', 'CommentController@show');
 
 Route::post('/posts/{post}/comment/{id}', 'CommentController@update');
 
-Route::DELETE('/posts/{post}/comment/{id}', 'CommentController@delete');
+Route::DELETE('/posts/{post}/comment/{id}', 'CommentController@destroy');
 
 Route::post('/posts/{id}/attach', 'CommentController@attach');
 
@@ -178,7 +178,7 @@ Route::get('/status/{id}', 'StatusController@show');
 
 Route::post('/status/{id}', 'StatusController@update');
 
-Route::DELETE('/status', 'StatusController@delete');
+Route::DELETE('/status/delete/{id}', 'StatusController@destroy');
 
 Route::post('/status/{id}/attach', 'StatusController@attach');
 
@@ -213,9 +213,13 @@ Route::post('/add_friend/{userRequestTo}', 'FriendshipController@add_friend');
 Route::post('/accept_friend/{userRequestTo}', 'FriendshipController@accept_friend');
 Route::get('/myfriends', 'FriendshipController@friends');
 Route::get('/pendingrequests', 'FriendshipController@pending_requests');
+Route::get('/friend', 'FriendshipController@friend_ids');
 
 
 
+
+
+Route::post('/profile/{id}/changepic', 'ProfileController@profile_picture');
 
 
 

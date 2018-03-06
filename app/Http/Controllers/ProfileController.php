@@ -175,8 +175,10 @@ class ProfileController extends Controller
      */
     public function destroy($id)
     {
-        $userInstance = new Profile;
+        $profileInstance = new Profile;
+        $userInstance = new User;
         $ok = $userInstance->deleteOneId($id);
+        $ok1 = $profileInstance->deleteOneId($id);
         return "Profile Deleted";
         
     }
@@ -194,6 +196,47 @@ class ProfileController extends Controller
 
         $ok = $userInstance->embedd($id,$values);
     }
-    
+
+
+
+    public function profile_picture(Request $request, $id)
+    {
+
+        $this->validate($request, [
+            
+            'file' => 'required|mimes:jpeg,bmp,png,jpg'
+            
+        ]);
+
+        $user = new User;
+        $profileInstance = new Profile();
+
+         $upload_url1 = 'http://s3.amazonaws.com/';
+
+         $upload_folder = '/data/media/';
+
+         $image = $request->file('file');
+
+         $imageFileName = time() . '.' . $image->getClientOriginalExtension();
+
+         $s3 = \Storage::disk('s3');
+
+         $filePath = '/data/media/' . $imageFileName;
+
+         $va = $s3->put($filePath, file_get_contents($image), 'public');
+
+         $media = $upload_url1.config('filesystems.disks.s3.bucket').$upload_folder.$imageFileName;
+
+         
+
+        $values = [
+
+            'profile_pic' => $media
+        ];
+
+        $result = $profileInstance->updateOneId($id,$values);
+
+        return $result;
+    }
 
 }
